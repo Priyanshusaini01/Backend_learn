@@ -53,7 +53,7 @@ const userSchema= new Schema({
 
 
 )
-//pre use to bycrt the code just before save // for security purposes
+//pre use to bycrt the code just before to save // for security purposes
 userSchema.pre("save",function(){
 
         if(!this.isModified(this.password)){
