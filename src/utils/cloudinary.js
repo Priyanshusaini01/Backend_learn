@@ -22,6 +22,7 @@ import { v2 as cloudinary } from 'cloudinary';
         }
         catch(error){
             fs.unlink(localFilePath) //remove the locally saved temp file as the upload operation got faield
+        return null;
         }
     }
 

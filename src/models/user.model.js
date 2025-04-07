@@ -60,7 +60,7 @@ userSchema.pre("save",function(){
             return next(); // if we are not updating pass then move on to next 
         }
 
-        this.password=hash(this.password,10);
+        this.password= bcrypt.hash(this.password,10);
         next();
 })
     // cheking pass using bycypt via compare method 
@@ -95,5 +95,5 @@ userSchema.pre("save",function(){
 
     userSchema.methods.generateRefreshToken=function(){}
 
-
+// this user directlu contact from mongoose
 export const User= mongoose.model("User",userSchema);
