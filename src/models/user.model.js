@@ -54,15 +54,11 @@ const userSchema= new Schema({
 
 )
 //pre use to bycrt the code just before to save // for security purposes
-userSchema.pre("save",function(){
+userSchema.pre("save", async function () {
+    if (!this.isModified("password")) return;
 
-        if(!this.isModified(this.password)){
-            return next(); // if we are not updating pass then move on to next 
-        }
-
-        this.password= bcrypt.hash(this.password,10);
-        next();
-})
+    this.password = await bcrypt.hash(this.password, 10);
+});
     // cheking pass using bycypt via compare method 
     userSchema.methods.isPasswordCorrect= async function (password) {
          
